@@ -1,0 +1,249 @@
+/*
+ * Implementation of Matrix class
+ * Author: Pahal Dalal
+ */
+
+#include <iostream>
+#include <cstdlib>
+#include <iomanip>
+#include "Matrix.h"
+
+using namespace std;
+
+
+
+/*
+ * Constructors and destructors
+ */
+
+//Parametric Constructor
+Matrix::Matrix()
+{
+  //allocate memory
+  /*data = new int* [numRows];
+  if(data == NULL)
+  {
+    cout << "[ERROR] Matrix::allocateMemory -> Insufficient Memory" << endl;
+    exit(1);
+  }
+  for(int i = 0; i < numRows; ++i)
+  {
+    data[i] = new int [numCols];
+    if(data[i] == NULL)
+    {
+      cout << "[ERROR] Matrix::allocateMemory -> Insufficient Memory" << endl;
+      exit(1);
+    }
+  }
+  
+  //read values from console
+  read();*/
+  
+}//end Matrix::Matrix
+
+//destructor
+Matrix::~Matrix()
+{
+  for(int i = 0; i < numRows; ++i)
+  {
+    if(data[i] != NULL)
+      delete [] data[i];
+  }
+  if(data != NULL)
+    delete [] data;
+}//end Matrix::~Matrix
+
+//copy constructor
+/*Matrix::Matrix(Matrix &M):numRows(M.numRows), numCols(M.numCols)
+{
+  
+  //allocate memory
+  data = new int* [numRows];
+  if(data == NULL)
+  {
+    cout << "[ERROR] Matrix::allocateMemory -> Insufficient Memory" << endl;
+    exit(1);
+  }
+  for(int i = 0; i < numRows; ++i)
+  {
+    data[i] = new int [numCols];
+    if(data[i] == NULL)
+    {
+      cout << "[ERROR] Matrix::allocateMemory -> Insufficient Memory" << endl;
+      exit(1);
+    }
+  }
+  
+  //copy data
+  for(int i = 0; i < numRows; ++i)
+  {
+    for(int j = 0; j < numCols; ++j)
+    {
+      setValue(i,j, M.getValue(i,j));
+    }
+  }
+  
+  
+}//end Matrix::Matrix(const Matrix &M)
+
+/*
+ * Accessors/Mutators 
+ */
+
+//getValue
+int Matrix::getValue(int i, int j) const
+{
+  if( i > -1 && j > -1 && i < numRows && j < numCols)
+    return(data[i][j]);
+  else
+  {
+    cout << "[ERROR] Matrix::getValue -> Attempted to access array out of bounds" << endl;
+    exit(1);
+  }
+}//end Matrix::getValue
+
+//setValue
+void Matrix::setValue(int i, int j, int value)
+{
+  if( i > -1 && j > -1 && i < numRows && j < numCols)
+    data[i][j] = value;
+  else
+  {
+    cout << "[ERROR] Matrix::setValue -> Attempted to access array out of bounds" << endl;
+    exit(1);
+  }
+}//end Matrix::setValue
+
+//get number of rows
+int Matrix::getNumRows() const
+{
+  return numRows;
+}//end Matrix::getNumRows
+
+
+//get number of columns
+int Matrix::getNumCols() const
+{
+  return numCols;
+}//end Matrix::getNumCols
+
+
+/*
+ * IO
+ */
+
+//display matrix to stdout
+
+void Matrix::display() const
+{
+  for(int i = 0; i < numRows; ++i)
+  {
+    for(int j = 0; j < numCols; ++j)
+    {
+      cout << setw(6) << getValue(i,j);
+    }
+    cout << endl;
+  }
+}//end Matrix::display
+
+void Matrix::read(P2)
+{
+  //cin >> P2;
+  cin >> numCols;
+  cin >> numRows;
+  cin >> brightness;
+
+  //allocate memory
+  data = new int* [numRows];
+  if(data == NULL)
+  {
+    cout << "[ERROR] Matrix::allocateMemory -> Insufficient Memory" << endl;
+    exit(1);
+  }
+  for(int i = 0; i < numRows; ++i)
+  {
+    data[i] = new int [numCols];
+    if(data[i] == NULL)
+    {
+      cout << "[ERROR] Matrix::allocateMemory -> Insufficient Memory" << endl;
+      exit(1);
+    }
+  }
+
+  //read in values
+  for(int i = 0; i < numRows; ++i)
+  {
+    for(int j = 0; j < numCols; ++j)
+    {
+      cin >> data[i][j];
+    }
+  }
+}//end Matrix::read
+
+
+/*
+ * Arithemetic
+ */
+
+void Matrix::operator += (const Matrix &M)
+{
+  for(int i = 0; i < numRows; ++i)
+  {
+    for(int j = 0; j < numCols; ++j)
+    {
+      setValue(i,j, getValue(i,j) + M.getValue(i,j));
+    }
+  }
+}//end Matrix::opeartor+=
+
+void Matrix::operator -= (const Matrix &M)
+{
+  for(int i = 0; i < numRows; ++i)
+  {
+    for(int j = 0; j < numCols; ++j)
+    {
+      setValue(i,j, getValue(i,j) - M.getValue(i,j));
+    }
+  }
+}//end Matrix::operator-=
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

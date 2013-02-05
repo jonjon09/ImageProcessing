@@ -1,0 +1,2 @@
+This was my final project for CSCE240. I worked with three other classmates on this. It offers four choices for image effects: Median Filtering, Image Blending, Contrast Enhancement, and Edge Detection. You must compile the code using 'make' and then run the code using "./prog" which will bring up further instructions. 
+Once the code is running, it will ask you to choose which editing tool you would like to use as well as which pgm image file to use.
